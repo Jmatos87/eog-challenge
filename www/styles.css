@@ -1,0 +1,17 @@
+h1,h3{
+	margin: 0 !important;
+}
+body{
+	background-size: cover;
+	transition: 10s all ease;
+}
+#navBar{
+	height: 100px;
+	background: black;
+	color: white;
+}
+#navBar h1{
+	text-align: center;
+	padding-top: 25px;
+}
+
