@@ -6,7 +6,7 @@ function rng(state = [{value:0,index:0}], action) {
     case CHANGE_VALUE: 
       var min = 0;
 
-      var max = 1000
+      var max = 1001
 
       var value = Math.floor(Math.random() * (max - min)) + min;
 

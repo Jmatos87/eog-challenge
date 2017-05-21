@@ -1,9 +1,15 @@
 import React from 'react';
 import Header from './components/Header.js';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import ChartComponent from './components/LineChart.js';
+import GaugeComponent from './components/Gauge.js'
 import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './actions'
-import Gauge from 'react-svg-gauge';
+import {Responsive, WidthProvider} from 'react-grid-layout';
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+ var layout = [
+      {key:"1",x:5,y:10,w:2,h:2},
+      {key:"2",x:0,y:5,w:4,h:4}
+    ];
 
 class App extends React.Component {
   constructor() {
@@ -15,33 +21,6 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    var self = this;
-
-    // setInterval(function(){
-
-    //   var min = 0;
-
-    //   var max = 1000
-
-    //   var value = Math.floor(Math.random() * (max - min)) + min;
-
-    //   var index = self.state.valueArr[self.state.valueArr.length-1].index +1
-
-    //   var newArray = []
-
-    //   var newObj = {index:index, value:value};
-
-    //   newArray= [...self.state.valueArr,newObj]
-
-    //   self.setState({
-    //     valueArr:newArray
-    //   })
-
-    // },1500)
-
-    console.log(this.props)
-
-    console.log('CANT BELIEVE THIS IS WORKING!!!')
 
   }
  
@@ -49,21 +28,24 @@ class App extends React.Component {
     const self = this;
 
     return (
+      
+
     	<div id="wrapper">
         <Header/>
-        
-        <LineChart width={730} height={250} data={this.props.rng}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <XAxis dataKey="index"/>
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="value" stroke="#8884d8" />
-        </LineChart> 
 
-        <Gauge value={this.props.rng[this.props.rng.length-1].value} max={1000} width={400} height={320} label="Gauge" />
+        <ResponsiveReactGridLayout className="layout" layouts={layout}
+        breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+        cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
+        useCSSTransforms={true}>
 
+           <div key={"1"} >
+              <ChartComponent rng={this.props.rng}/>
+           </div>
+           <div key={"2"}>
+              <GaugeComponent rng={this.props.rng}/>
+           </div>
+
+        </ResponsiveReactGridLayout>
       </div>
       
     );
