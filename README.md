@@ -25,9 +25,9 @@ npm install
  
  
  
-Compile
+Build
 ---
  
 ```
-npm run compile
+npm run build
 ```
