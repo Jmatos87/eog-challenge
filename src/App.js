@@ -6,26 +6,25 @@ import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './a
 import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
- var layout = [
-      {key:"1",x:5,y:10,w:2,h:2},
-      {key:"2",x:0,y:5,w:4,h:4}
-    ];
+ var layout = {
+     lg: [
+        { i: '1', x: 0, y: 0, w: 5, h: 2 },
+        { i: '2', x: 0, y: 2, w: 3, h: 2 }
+      ]
+    };
+
+
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-        valueArr:[{index:0,value:1}]
+        
     };
     
   }
-
-  componentDidMount(){
-
-  }
  
   render() {
-    const self = this;
 
     return (
       
@@ -38,10 +37,10 @@ class App extends React.Component {
         cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
         useCSSTransforms={true}>
 
-           <div key={"1"} >
+           <div key="1" >
               <ChartComponent rng={this.props.rng}/>
            </div>
-           <div key={"2"}>
+           <div key="2">
               <GaugeComponent rng={this.props.rng}/>
            </div>
 
